@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediksi Luas Panen</title>
+</head>
+<body>
+    <h2>Form Prediksi Luas Panen</h2>
+    <form method="post" action="/predict">
+        Tahun: <input type="number" name="tahun" required><br>
+        Produksi: <input type="number" name="produksi" required><br>
+        Curah Hujan: <input type="number" name="curah_hujan" required><br>
+        Kelembapan: <input type="number" name="kelembapan" required><br>
+        Suhu Rata-rata: <input type="number" name="suhu" step="0.01" required><br>
+        <br>
+        <input type="submit" value="Prediksi">
+    </form>
+
+    {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</body>
+</html>
