@@ -2,21 +2,133 @@
 <html>
 <head>
     <title>Prediksi Luas Panen</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f2f9f1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 1200px;
+            height: 80%;
+        }
+
+        .form-container, .result-container {
+            width: 48%;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2f5233;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #2f5233;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3b6f46;
+        }
+
+        .result-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h3 {
+            color: #2f5233;
+        }
+
+        .image-container {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Form Prediksi Luas Panen</h2>
-    <form method="post" action="/predict">
-        Tahun: <input type="number" name="tahun" required><br>
-        Produksi: <input type="number" name="produksi" required><br>
-        Curah Hujan: <input type="number" name="curah_hujan" required><br>
-        Kelembapan: <input type="number" name="kelembapan" required><br>
-        Suhu Rata-rata: <input type="number" name="suhu" step="0.01" required><br>
-        <br>
-        <input type="submit" value="Prediksi">
-    </form>
+    <div class="container">
+        <!-- Form Container -->
+        <div class="form-container">
+            <h2>Form Prediksi Luas Panen</h2>
+            <form method="post" action="/predict">
+                Tahun: 
+                <input type="number" name="tahun" placeholder="Contoh: 2025" required>
+                
+                Produksi: 
+                <input type="number" name="produksi" placeholder="Contoh: 250000" required>
+                
+                Curah Hujan: 
+                <input type="number" name="curah_hujan" placeholder="Contoh: 1800 (mm)" required>
+                
+                Kelembapan: 
+                <input type="number" name="kelembapan" placeholder="Contoh: 75 (%)" required>
+                
+                Suhu Rata-rata: 
+                <input type="number" name="suhu" step="0.01" placeholder="Contoh: 26.5 (°C)" required>
+                
+                <input type="submit" value="Prediksi">
+            </form>
+        </div>
 
-    {% if prediction_text %}
-        <h3>{{ prediction_text }}</h3>
-    {% endif %}
+        <!-- Result Container -->
+        <div class="result-container">
+            {% if prediction_text %}
+                <h3>{{ prediction_text }}</h3>
+            {% endif %}
+
+            <!-- Optional Image -->
+            <div class="image-container">
+                <img src="https://via.placeholder.com/300x200" alt="Informasi Luas Panen" />
+            </div>
+        </div>
+    </div>
 </body>
 </html>
